@@ -97,28 +97,32 @@ scale_fill_pawpaw <- function(palette = "analogous", discrete = TRUE, reverse = 
 # Creating a PPA theme  ----------------------------------------------------------
 
 
+
+
 library(ggplot2)
 
 
 # Set Font and Text Size
 theme_paw <-
-  function() {theme_minimal(base_size = 12,
+  function() {theme_minimal(base_size = 14,
                             base_family = "Roboto Mono") +
-      theme(panel.grid.minor = element_blank())
+      theme(panel.grid.minor = element_blank(),
+            plot.background = element_rect(fill = '#ffffff29'),
+            panel.border = element_blank())
     }
+
+
 
 # Remove Legend
 theme_paw_nl <-
-  function() {theme_minimal(base_size = 12,
-                            base_family = "Roboto Mono") +
+  function() {theme_paw() +
       theme(legend.position = "none",
             panel.grid.minor = element_blank())
   }
 
 # Remove Legend and x axis labels
 theme_paw_nlx <-
-  function() {theme_minimal(base_size = 12,
-                            base_family = "Roboto Mono") +
+  function() {theme_paw() +
       theme(legend.position = "none",
             panel.grid.minor = element_blank(),
             axis.title.x = element_blank())
@@ -126,8 +130,7 @@ theme_paw_nlx <-
 
 # Remove Legend and y axis labels
 theme_paw_nly <-
-  function() {theme_minimal(base_size = 12,
-                            base_family = "Roboto Mono") +
+  function() {theme_paw() +
       theme(legend.position = "none",
             panel.grid.minor = element_blank(),
             axis.title.y = element_blank())
@@ -135,8 +138,7 @@ theme_paw_nly <-
 
 # Remove Legend and all axis labels
 theme_paw_nlxy <-
-  function() {theme_minimal(base_size = 12,
-                            base_family = "Roboto Mono") +
+  function() {theme_paw() +
       theme(legend.position = "none",
             panel.grid.minor = element_blank(),
             axis.title = element_blank())
@@ -144,32 +146,28 @@ theme_paw_nlxy <-
 
 # Remove x axis labels
 theme_paw_nx <-
-  function() {theme_minimal(base_size = 12,
-                            base_family = "Roboto Mono") +
+  function() {theme_paw() +
       theme(axis.title.x = element_blank(),
             panel.grid.minor = element_blank(),)
   }
 
 # Remove y axis labels
 theme_paw_ny <-
-  function() {theme_minimal(base_size = 12,
-                            base_family = "Roboto Mono") +
+  function() {theme_paw() +
       theme(axis.title.y = element_blank(),
             panel.grid.minor = element_blank(),)
   }
 
 # Remove all axis labels
 theme_paw_nxy <-
-  function() {theme_minimal(base_size = 12,
-                            base_family = "Roboto Mono") +
+  function() {theme_paw() +
       theme(axis.title = element_blank(),
             panel.grid.minor = element_blank(),)
   }
 
 # Theme for usmap
 theme_paw_usmap <-
-  function() {theme_minimal(base_size = 12,
-                            base_family = "Roboto Mono") +
+  function() {theme_paw() +
       theme(legend.position = "right",
             axis.title = element_blank(),
             axis.ticks = element_blank(),
