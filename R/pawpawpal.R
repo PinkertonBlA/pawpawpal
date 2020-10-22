@@ -107,6 +107,7 @@ theme_paw <-
   function() {theme_minimal(base_size = 14,
                             base_family = "Roboto Mono") +
       theme(panel.grid.minor = element_blank(),
+            panel.background = element_rect(fill = '#ffffff29'),
             plot.background = element_rect(fill = '#ffffff29'),
             panel.border = element_blank())
     }
