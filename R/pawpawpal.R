@@ -9,7 +9,7 @@
 #   Check Package:             'Ctrl + Shift + E'
 #   Test Package:              'Ctrl + Shift + T'
 
-# List of colors to use
+# --------------------- Palettes -----
 
 pawcolors <- c("light blue" = "#32B0CD",
                "dark blue" = "#3262CD",
@@ -94,25 +94,28 @@ scale_fill_pawpaw <- function(palette = "analogous", discrete = TRUE, reverse = 
   }
 }
 
-# Creating a PPA theme  ----------------------------------------------------------
+# --------------------- Creating a PPA theme  ----------------------------------------------------------
 
 
 
 
 library(ggplot2)
 
+siteTheme <- function() {
+  theme(panel.background = element_rect(fill = "#3bb0cd", colour = NA),
+        plot.background = element_rect(fill = "#3bb0cd",colour = NA),
+        legend.background = element_rect(fill = "#3bb0cd", colour = NA),
+        legend.box.background = element_rect(fill = "#3bb0cd",colour = NA),
+        axis.line = element_blank())
+}
 
-# Set Font and Text Size
+# --------------------- Set Font and Text Size -----
 theme_paw <-
   function() {theme_minimal(base_size = 14,
                             base_family = "Roboto Mono") +
       theme(panel.grid.minor = element_blank(),
-            panel.background = element_rect(fill = '#ffffff29'),
-            plot.background = element_rect(fill = '#ffffff29'),
-            panel.border = element_blank())
+            rect = element_rect(fill = "transparent"))
     }
-
-
 
 # Remove Legend
 theme_paw_nl <-
@@ -179,7 +182,7 @@ theme_paw_usmap <-
 
 # --------------------- Common Scales ----------------------------------------------
 
-# Percents ----------------------------
+# --------------------- Percents
 
 # y scale percent
 scale_y_perc =
@@ -189,7 +192,7 @@ scale_y_perc =
 scale_x_perc =
   scale_x_continuous(labels = scales::label_percent(accuracy = 1))
 
-# Dollar --------------------------------
+# ---------------------- Dollar
 
 # y scale dollar
 scale_y_dollar =
@@ -199,7 +202,7 @@ scale_y_dollar =
 scale_x_dollar =
   scale_x_continuous(labels = scales::label_dollar(accuracy = 1))
 
-# Comma ---------------------------------
+# ---------------------- Comma
 
 scale_y_comma =
   scale_y_continuous(labels = scales::label_comma(accuracy = 1))
@@ -207,7 +210,7 @@ scale_y_comma =
 scale_x_comma =
   scale_x_continuous(labels = scales::label_comma(accuracy = 1))
 
-# lseq -----------------------------------
+# ----------------------- lseq
 
 lseq <- function(from=1, to=100000, length.out=6) {
   # logarithmic spaced sequence
@@ -215,7 +218,7 @@ lseq <- function(from=1, to=100000, length.out=6) {
   exp(seq(log(from), log(to), length.out = length.out))
 }
 
-# us_codes df ----------------------------
+# --------------------- us_codes df ----------------------------
 
 us_fips <-
   dplyr::rename(
@@ -225,3 +228,9 @@ us_fips <-
       dplyr::mutate_all(dplyr::rename(janitor::clean_names(read.csv("https://query.data.world/s/bvoza42bvwbkyjtdhzm545qov5rric")), state_code = state), ~as.character(.))
     )
   , fips = stcountyfp)
+
+# --------------------- read.paste()
+
+read.paste <- function(header=TRUE,...) {
+  read.table("clipboard",sep="\t",header=header,...)
+}
